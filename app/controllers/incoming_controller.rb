@@ -15,7 +15,7 @@ class IncomingController < ApplicationController
     # Find the topic by using params[:subject]
     @topic = Topic.find_by(title: params[:subject])
     # Assign the url to a variable after retreiving it from params["body-plain"]
-    @url = params["body-plain"]
+    @url = params["stripped-text"]
     # Check if user is nil, if so, create and save a new user
 
     # Check if the topic is nil, if so, create and save a new topic
