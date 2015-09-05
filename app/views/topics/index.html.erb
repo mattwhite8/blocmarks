@@ -6,6 +6,7 @@
   
   <% @topics.map do |topic| %>
     <h1>#<%= topic.title %></h1>
+    <%= link_to "Show Topic", topic_path(topic.id), class: 'btn btn-success' %>
     <%= link_to "Delete Topic", topic_path(topic.id), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this topic?'} %>
     <% topic.bookmarks.map do |bookmark| %>
       <h2><%= bookmark.url %></h2>
