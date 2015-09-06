@@ -12,10 +12,23 @@ class TopicsController < ApplicationController
   end
 
   def edit
+    @topic = Topic.find(params[:id])
   end
 
   def create
     @topic = Topic.new(topic_params)
+    @topic.user = current_user
+    if @topic.save
+      redirect_to topics_path, notice: "Topic was saved successfully."
+    else
+      flash[:error] = "Error creating topic. Please try again."
+      render :new
+    end
+  end
+
+  def update
+    @topic = Topic.find(params[:id])
+    @topic.title = params[:topic][:title]
     @topic.user = current_user
     if @topic.save
       redirect_to topics_path, notice: "Topic was saved successfully."
@@ -33,10 +46,9 @@ class TopicsController < ApplicationController
       flash[:notice] = "\"#{title}\" was deleted sucessfully."
       redirect_to topics_path
     else
-      flash[:error] = "There was an error deleting the post."
+      flash[:error] = "There was an error deleting the topic."
       redirect_to :show
     end
-
   end
 
   private

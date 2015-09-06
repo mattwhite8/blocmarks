@@ -8,6 +8,7 @@ class BookmarksController < ApplicationController
   end
 
   def edit
+    @bookmark = Bookmark.find(params[:id])
   end
 
   def create
@@ -25,6 +26,20 @@ class BookmarksController < ApplicationController
       flash[:error] = "There was an error, try again"
       redirect_to :new
     end
+  end
+
+  def update
+    @bookmark = Bookmark.find(params[:id])
+    @bookmark.url = params[:bookmark][:url]
+
+    if @bookmark.save
+      flash[:notice] = "Bookmark was saved"
+      redirect_to topics_path
+    else
+      flash[:error] = "There was an error, try again"
+      redirect_to :new
+    end
+
   end
 
   def destroy
