@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  after_action :verify_authorized, :except => :index
+  #after_action :verify_authorized, :except => :index
 
 
   def show
