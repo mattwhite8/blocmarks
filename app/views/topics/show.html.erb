@@ -2,10 +2,9 @@
 
 <%= link_to "New Bookmark", new_topic_bookmark_path(@topic), class: 'btn btn-success' %>
 
-
 <% @topic.bookmarks.map do |bookmark| %>
 <h2><%= bookmark.url %><h2>
     <%= link_to "Delete", [bookmark.topic, bookmark], method: :delete %> |
-    <%= link_to "Edit", edit_topic_bookmark_path(bookmark.topic, bookmark) %>
+    <%= link_to "Edit", edit_topic_bookmark_path(bookmark.topic, bookmark) %> |
     <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
 <% end %>

@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  #after_action :verify_authorized, :except => :index
+  after_action :verify_authorized, :except => :index
 
 
   def show
@@ -29,7 +29,7 @@ class BookmarksController < ApplicationController
 
     if @bookmark.save
       flash[:notice] = "Bookmark was saved"
-      redirect_to topics_path
+      redirect_to @bookmark.topic
     else
       flash[:error] = "There was an error, try again"
       redirect_to :new
@@ -43,7 +43,7 @@ class BookmarksController < ApplicationController
 
     if @bookmark.save
       flash[:notice] = "Bookmark was saved"
-      redirect_to topics_path
+      redirect_to @bookmark.topic
     else
       flash[:error] = "There was an error, try again"
       redirect_to :new
@@ -57,7 +57,7 @@ class BookmarksController < ApplicationController
 
     if @bookmark.destroy
       flash[:notice] = "Bookmark destroyed"
-      redirect_to topics_path
+      redirect_to @bookmark.topic
     else 
       flash[:error] = "There was an error, try again"
       redirect_to :show
