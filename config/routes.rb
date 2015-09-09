@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
- resources :topics do
-  resources :bookmarks, only: [:show, :new, :edit, :create, :destroy, :update] do
-         resources :likes, only: [:create, :destroy]
-       end
- end
+  resources :topics do
+   resources :bookmarks, only: [:show, :new, :edit, :create, :destroy, :update] do
+          resources :likes, only: [:create, :destroy]
+        end
+  end
 
   devise_for :users
+
+  resources :users, only: [:show]
 
   get 'welcome/about'
 

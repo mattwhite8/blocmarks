@@ -1,0 +1,14 @@
+<h1><%= current_user.name %></h1>
+
+<h2>Bookmarks</h2>
+
+<% @bookmarks.each do |bookmark| %>
+<h3><%= bookmark.url %></h3></br>
+<% end %>
+
+<h2>Favorites</h2>
+
+<% @likes.each do |like| %>
+<h3><%= like.bookmark.url %></h3>
+<%= render partial: 'likes/like', locals: { bookmark: like.bookmark } %>
+<% end %>

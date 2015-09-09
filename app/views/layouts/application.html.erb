@@ -18,7 +18,8 @@
         <div class="pull-right user-info">
            <% if current_user %>
              Hello <%= current_user.name %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %> |
-             <%= link_to "Bookmarks", topics_path %>
+             <%= link_to "Bookmarks", topics_path %> |
+             <%= link_to "Profile", user_path(current_user) %>
            <% else %>
              <%= link_to "Sign In", new_user_session_path %> or
              <%= link_to "Sign Up", new_user_registration_path %>
